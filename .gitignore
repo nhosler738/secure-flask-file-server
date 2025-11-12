@@ -1,0 +1,21 @@
+# Python
+__pycache__/
+*.pyc
+instance/
+venv/
+.env
+
+# Environment & Config files
+*.env
+*.pem
+*.key
+
+# OS-specific
+.DS_Store
+
+# IDEs and editors
+.vscode/
+.idea/
+
+# flask session data
+flask_session/

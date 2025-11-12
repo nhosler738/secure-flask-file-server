@@ -1,0 +1,47 @@
+{% extends "bootstrap/base.html" %}
+{% block title %}File Upload{% endblock %}
+
+
+{% block content %}
+<div class="container mt-5">
+  <div class="card shadow-lg p-4 mx-auto" style="max-width: 500px;">
+    <h1 class="text-center text-primary mb-4">Upload a File</h1>
+
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        <div class="alert alert-info text-center" role="alert">
+          {{ messages[0] }}
+        </div>
+      {% endif %}
+    {% endwith %}
+
+    <form id="uploadForm" method="POST" enctype="multipart/form-data">
+      <div class="form-group mb-3">
+        <label for="fileInput">Choose file</label>
+        <input 
+          type="file" 
+          id="fileInput" 
+          name="file" 
+          class="form-control" 
+          required
+        >
+      </div>
+      <div class="d-grid">
+        <button type="submit" class="btn btn-success btn-block">Upload</button>
+      </div>
+    </form>
+
+    <hr class="my-4">
+
+    <div class="d-flex justify-content-between">
+      <form action="{{ url_for('downloads') }}" method="POST">
+        <button type="submit" class="btn btn-secondary">📁 View Downloads</button>
+      </form>
+
+      <form action="{{ url_for('logout') }}" method="POST">
+        <button type="submit" class="btn btn-danger">Logout</button>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock %}

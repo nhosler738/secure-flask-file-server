@@ -1,0 +1,38 @@
+{% extends "bootstrap/base.html" %}
+{% block title %}Server Login{% endblock %}
+
+
+
+{% block content %}
+<div class="container mt-5">
+  <div class="card shadow-lg p-4 mx-auto" style="max-width: 400px;">
+    <h1 class="text-center text-primary mb-4">Server Login</h1>
+
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        <div class="alert alert-danger text-center" role="alert">
+          {{ messages[0] }}
+        </div>
+      {% endif %}
+    {% endwith %}
+
+    <form id="loginForm" action="{{ url_for('login') }}" method="POST">
+      <div class="form-group mb-3">
+        <label for="password">Server Password</label>
+        <input 
+          type="password" 
+          id="password" 
+          name="password" 
+          class="form-control" 
+          placeholder="Enter server password" 
+          required
+        >
+      </div>
+
+      <div class="d-grid">
+        <button type="submit" class="btn btn-primary btn-block">Login</button>
+      </div>
+    </form>
+  </div>
+</div>
+{% endblock %}

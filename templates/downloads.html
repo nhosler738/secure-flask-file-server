@@ -1,0 +1,44 @@
+{% extends "bootstrap/base.html" %}
+{% block title %}Downloads{% endblock %}
+
+
+
+{% block content %}
+<div class="container mt-5">
+    <div class="card shadow-lg p-4">
+        <h1 class="mb-4 text-center text-primary">Available Files</h1>
+
+        {% if files %}
+        <ul class="list-group mb-4">
+            {% for file in files %}
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                <div>
+                    <a href="{{ url_for('uploaded_file', filename=file) }}" target="_blank" class="text-decoration-none">
+                        {{ file }}
+                    </a>
+                </div>
+                <form action="{{ url_for('download_file', filename=file) }}" method="GET" class="d-inline">
+                    <button type="submit" class="btn btn-sm btn-success">Download</button>
+                </form>
+            </li>
+            {% endfor %}
+        </ul>
+        {% else %}
+        <div class="alert alert-info text-center">
+            No files available for download.
+        </div>
+        {% endif %}
+
+        <div class="d-flex justify-content-between mt-4">
+            <form action="{{ url_for('upload') }}" method="POST">
+                <button type="submit" class="btn btn-secondary">⬅ Back to Uploads</button>
+            </form>
+
+            <form action="{{ url_for('logout') }}" method="POST">
+                <button type="submit" class="btn btn-danger">Logout</button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
