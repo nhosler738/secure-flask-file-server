@@ -10,10 +10,11 @@ UPLOAD_FOLDER = 'uploads/'
 ALLOWED_EXTENSIONS = {'txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'}
 
 # setup app 
-app = Flask(__name__)
+app = Flask(__name__, static_folder="static")
 
 # app attributes for config 
 load_dotenv()
+app.config['SERVER_NAME'] = "File Server"
 app.config["SESSION_PERMANENT"] = False # sessions are wiped after use
 app.config["SESSION_TYPE"] = "filesystem" # storing users data on files within the server
 app.secret_key = os.getenv("SECRET_KEY")
